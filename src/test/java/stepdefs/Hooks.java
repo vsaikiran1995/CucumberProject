@@ -4,10 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class Hooks {
 	
@@ -15,8 +16,10 @@ public class Hooks {
 	
 	@Before("@Browser")
 	public void setup() {
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+		//WebDriverManager.chromedriver().setup();
+		ChromeOptions co = new ChromeOptions();
+		co.setBrowserVersion("115");
+		driver = new ChromeDriver(co);
 		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
 		driver.manage().window().maximize();
 	}
